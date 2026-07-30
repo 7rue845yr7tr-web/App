@@ -456,9 +456,9 @@ jobs:
             throw "MSI administrative install failed with exit code $($proc.ExitCode) (user installs often see 2318 when this fails)"
           }
           $appDir = Get-ChildItem -Path $target -Recurse -Directory -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -match '^(AniSurgeX|Anisurge)$' } |
+            Where-Object { $_.Name -match '^(Mizuki|AniSurgeX|Anisurge)$' } |
             Select-Object -First 1
-          if (-not $appDir) { throw "MSI extracted but AniSurgeX/Anisurge app folder was not found under $target" }
+          if (-not $appDir) { throw "MSI extracted but Mizuki/AniSurgeX/Anisurge app folder was not found under $target" }
           $mpv = Get-ChildItem -Path $appDir.FullName -Recurse -Filter "mpv-2.dll" -ErrorAction SilentlyContinue | Select-Object -First 1
           if (-not $mpv) {
             $mpv = Get-ChildItem -Path $appDir.FullName -Recurse -Filter "libmpv-2.dll" -ErrorAction SilentlyContinue | Select-Object -First 1
